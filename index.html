@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music</title>
+    <link rel="stylesheet" href="./main.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body class=" ">
+    <div class="music">
+        <div id="clock"></div>
+        <div id="clock_time"></div>
+        <h2
+            class="title font-[700] italic text-[35px] inline-block animate-pulse bg-clip-text text-transparent bg-gradient-to-r from-black via-black to-red-500">
+            Music name</h2>
+        <div class="player">
+            <audio preload="auto" autoplay="true" src=""></audio>
+            <div class="btns">
+                <span class="prev">
+                    <ion-icon name="play-back-outline"></ion-icon>
+                </span>
+                <span class="playPause">
+                    <ion-icon name="play-outline"></ion-icon>
+                </span>
+                <span class="next">
+                    <ion-icon name="play-forward-outline"></ion-icon>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const title = document.querySelector('.title')
+        const prev = document.querySelector('.prev')
+        const playPause = document.querySelector('.playPause')
+        const next = document.querySelector('.next')
+        const audio = document.querySelector('audio')
+
+        const songList = [
+            {
+                path: "./audio/ong_troi_lam_toi_anh_chua_beat.mp3",
+                songName: "Ông Trời Làm Tội Anh Chưa Beat"
+            },
+            {
+                path: "./audio/chill-usuk.mp3",
+                songName: "Nhạc Lofi Tiếng Anh Chill Nhẹ "
+            },
+            {
+                path: "./audio/su_thanh_hoa.mp3",
+                songName: "Sứ Thanh Hoa"
+            },
+            {
+                path: "./audio/te_that_anh_nho_em_piano.mp3",
+                songName: "Tệ Thật Anh Nhớ Em"
+            }
+        ];
+
+        let song_Playing = false;
+        //play song
+        function palySong() {
+            song_Playing = true;
+            audio.play();
+            playPause.classList.add('active')
+            playPause.innerHTML = '<ion-icon name="pause-outline"></ion-icon>'
+        }
+        //auto play
+        let autoPlayInterval = setInterval(() => {
+            if (audio.ended) {
+                i = (i + 1) % songList.length;
+                audio.src = songList[i].path;
+                title.textContent = songList[i].songName;
+                audio.play();
+            }
+        }, 200);
+
+        //pause song
+        function pauseSong() {
+            song_Playing = false;
+            audio.pause();
+            playPause.classList.remove('active')
+            playPause.innerHTML = '<ion-icon name="play-outline"></ion-icon>'
+        }
+        //paly or pause and click
+        playPause.addEventListener("click", () => (song_Playing ? pauseSong() : palySong()))
+
+        //load song
+        function loadSong(songList) {
+            title.textContent = songList.songName;
+            audio.src = songList.path;
+        }
+
+        //current song
+
+        let i = 0;
+        loadSong(songList[i])
+
+        // prev song
+        function prevSong() {
+            i--;
+            if (i < 0) {
+                i = songList.length - 1;
+            }
+            loadSong(songList[i])
+            palySong()
+        }
+        prev.addEventListener("click", prevSong)
+
+        // next song
+        function nextSong() {
+            i++;
+            if (i > songList.length - 1) {
+                i = 0;
+            }
+            loadSong(songList[i])
+            palySong()
+        }
+        next.addEventListener("click", nextSong)
+
+        // Ngày tháng nam
+        function updateTime() {
+            const now = new Date();
+            const daysOfWeek = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
+            const dayOfWeek = daysOfWeek[now.getDay()];
+            const date = now.getDate();
+            const months = ['tháng 1', 'tháng 2', 'tháng 3', 'tháng 4', 'tháng 5', 'tháng 6', 'tháng 7', 'tháng 8', 'tháng 9', 'tháng 10', 'tháng 11', 'tháng 12'];
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+            const formattedTime = `${dayOfWeek}, ngày ${date} ${month} năm ${year} `;
+            document.querySelector("#clock").textContent = formattedTime;
+        }
+
+        setInterval(updateTime, 1000);
+
+        // time real
+        function updateTimes() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            const formattedTime = `${hours}:${minutes}`;
+            document.querySelector('#clock_time').textContent = formattedTime;
+        }
+
+        setInterval(updateTimes, 1000);
+
+
+    </script>
+
+</body>
+
+</html>
