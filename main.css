@@ -10,7 +10,7 @@ body {
     align-items: center;
     min-height: 100vh;
     background: #6c1c1c;
-    background-image: url('./img/bg-780.gif');
+    background-image: url('./img/bg-sang.gif');
     background-size: cover;
 
 
@@ -31,10 +31,7 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
     text-align: center;
-    position: fixed;
-    top: 0;
-    font-size: 20px;
-    margin-top: 20px;
+    font-size: 30px;
     text-align: center;
 }
 
@@ -42,11 +39,7 @@ body {
     color: #fff;
     font-size: 1.5rem;
     font-weight: bold;
-    text-align: center;
-    position: fixed;
-    top: 0;
-    font-size: 40px;
-    margin-top: 90px;
+    font-size: 70px;
     text-align: center;
 }
 
@@ -61,7 +54,7 @@ body {
 
 .player {
     position: relative;
-    width: 400px;
+    width: 230px;
     min-height: 100px;
     border: 1px solid #fff;
     border-radius: 80px;
@@ -121,32 +114,18 @@ body {
         align-items: center;
         min-height: 100vh;
         background: #6c1c1c;
-        background-image: url('./img/bg-computer.gif');
+        background-image: url('./img/bg-sang.gif');
         background-size: cover;
     }
 
-    #clock {
-        color: #030500;
-        font-size: 1.5rem;
-        font-weight: bold;
-        text-align: center;
-        position: fixed;
-        top: 0;
-        font-size: 30px;
-        margin-top: 20px;
-        text-align: center;
-    }
 
-    #clock_time {
-        color: #035f2e;
-        font-size: 1.5rem;
-        font-weight: bold;
-        text-align: center;
-        position: fixed;
-        top: 0;
-        font-size: 70px;
-        margin-top: 90px;
-        text-align: center;
+    .player {
+        position: relative;
+        width: 300px;
+        min-height: 100px;
+        border: 1px solid #fff;
+        border-radius: 80px;
+        padding: 17px 20px;
     }
 }
 
@@ -156,32 +135,17 @@ body {
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        background: #6c1c1c;
-        background-image: url('./img/bg-mua.gif');
+        background: #9d9898;
+        background-image: url('./img/bg-sang.gif');
         background-size: cover;
     }
 
-    #clock {
-        color: #fff;
-        font-size: 1.5rem;
-        font-weight: bold;
-        text-align: center;
-        position: fixed;
-        top: 0;
-        font-size: 30px;
-        margin-top: 20px;
-        text-align: center;
-    }
-
-    #clock_time {
-        color: #fff;
-        font-size: 1.5rem;
-        font-weight: bold;
-        text-align: center;
-        position: fixed;
-        top: 0;
-        font-size: 70px;
-        margin-top: 90px;
-        text-align: center;
+    .player {
+        position: relative;
+        width: 350px;
+        min-height: 100px;
+        border: 1px solid #fff;
+        border-radius: 80px;
+        padding: 17px 20px;
     }
 }

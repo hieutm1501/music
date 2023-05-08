@@ -14,10 +14,37 @@
 
 <body class=" ">
     <div class="music">
-        <div id="clock"></div>
-        <div id="clock_time"></div>
+        <div class="fixed top-0">
+            <div class="nav flex justify-between w-full ">
+                <div>
+                    <a href="/" class="text-[80px] "><ion-icon name="logo-soundcloud"></ion-icon></a>
+                </div>
+
+                <div class="flex justify-center justify-items-center gap-4 pt-[34px] ">
+                    <div>
+                        <button id="toggle-theme"
+                            class=" hover:bg-[#b3acac] text-[25px] text-white font-bold py-1 px-2 rounded">
+                            <ion-icon name="moon-outline"></ion-icon>
+                        </button>
+                    </div>
+                    <div>
+                        <button id="toggleMute"
+                            class="hover:bg-[#b3acac] text-[25px] text-white font-bold py-1 px-2 rounded"><ion-icon
+                                name="volume-mute-outline"></ion-icon></button>
+                    </div>
+                    <div>
+                        <a class="hover:bg-[#b3acac] text-[29px] text-white font-bold py-1 px-2 rounded"
+                            href="https://www.facebook.com/m.hieu.truong.15"><ion-icon
+                                name="logo-facebook"></ion-icon></a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="clock"></div>
+            <div id="clock_time"></div>
+        </div>
         <h2
-            class="title font-[700] italic text-[35px] inline-block animate-pulse bg-clip-text text-transparent bg-gradient-to-r from-black via-black to-red-500">
+            class="title text-center font-[700] italic text-[35px] inline-block animate-pulse bg-clip-text text-transparent bg-gradient-to-r from-white via-blue to-red-500">
             Music name</h2>
         <div class="player">
             <audio preload="auto" autoplay="true" src=""></audio>
@@ -36,12 +63,38 @@
     </div>
 
     <script>
+        // Chế Độ sáng tối 
+        const toggleButton = document.getElementById("toggle-theme");
+        const body = document.getElementsByTagName("body")[0];
+
+        toggleButton.addEventListener("click", function () {
+            body.classList.toggle("bg-[url('./img/bg-sang.gif')]");
+            body.classList.toggle("bg-[url('./img/bg-toi.gif')]");
+
+            if (body.classList.contains("bg-[url('./img/bg-sang.gif')]")) {
+                toggleButton.querySelector("ion-icon").setAttribute("name", "sunny-outline");
+            } else {
+                toggleButton.querySelector("ion-icon").setAttribute("name", "moon-outline");
+            }
+        });
+
         const title = document.querySelector('.title')
         const prev = document.querySelector('.prev')
         const playPause = document.querySelector('.playPause')
         const next = document.querySelector('.next')
         const audio = document.querySelector('audio')
-
+        // chế độ tắt âm thanh trang web
+        const togglemute = document.getElementById('toggleMute')
+        togglemute.addEventListener("click", function () {
+            if (audio.muted == true) {
+                audio.muted = false;
+                togglemute.querySelector("ion-icon").setAttribute("name", "volume-mute-outline");
+            } else {
+                audio.muted = true;
+                togglemute.querySelector("ion-icon").setAttribute("name", "volume-high-outline");
+            }
+        })
+        // bài hát
         const songList = [
             {
                 path: "./audio/ong_troi_lam_toi_anh_chua_beat.mp3",
